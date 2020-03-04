@@ -2,10 +2,13 @@ from pyhap.accessory_driver import AccessoryDriver
 from hap_mqtt import MqttAccessories, HapMqtt
 import signal
 import logging
+from os.path import expanduser
 
 
 from accessories.temperature_sensor import TemperatureSensor
 from accessories.basic_light import BasicLight
+
+accessory_state = expanduser('~/Documents/2. Code/2. Python/HAP-MQTT/accessory.state')
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO,
@@ -14,7 +17,7 @@ logging.basicConfig(level=logging.INFO,
 
 # Start the accessory on port 51826
 driver = AccessoryDriver(port=51827,
-                         persist_file='/Users/codymccomber/Documents/2. Code/2. Python/HAP-MQTT/accessory.state')
+                         persist_file=accessory_state)
 
 mqtt_bridge = HapMqtt(driver, "mqtt_bridge")
 
