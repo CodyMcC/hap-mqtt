@@ -42,7 +42,7 @@ accessories.append(TemperatureSensor("garage", MQTTSERVER, driver, "battery_2", 
 accessories.append(TemperatureSensor("garage", MQTTSERVER, driver, "battery_3", aid=2333))
 accessories.append(TemperatureSensor("garage", MQTTSERVER, driver, "ambient", aid=2444))
 
-accessories.append(TemperatureSensor(driver, "fake_temp"))
+# accessories.append(TemperatureSensor(driver, "fake_temp"))
 
 
 # accessories.append(test)
