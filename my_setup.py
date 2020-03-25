@@ -11,7 +11,7 @@ from accessories.temperature_sensor import TemperatureSensor
 from accessories.temp_sensor import TemperatureSensor
 
 MQTTSERVER = "pi-server"
-accessory_state = expanduser('~/Documents/2. Code/2. Python/HAP-MQTT/accessory.state')
+accessory_state = expanduser('~/github/hap-mqtt/accessory.state')
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO,
