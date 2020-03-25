@@ -23,6 +23,9 @@ class TemperatureSensor(Accessory):
         serv_temp = self.add_preload_service('TemperatureSensor')
         self.char_temp = serv_temp.configure_char('CurrentTemperature')
 
+        self.set_info_service(firmware_revision=1, manufacturer="MonikerTechnology",
+                              model="Alpha", serial_number=str(self.aid))
+
     def __setstate__(self, state):
         print("\n\n\t__setstate__ ran\n\n")
         self.__dict__.update(state)
