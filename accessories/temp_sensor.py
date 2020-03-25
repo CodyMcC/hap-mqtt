@@ -18,7 +18,7 @@ class TemperatureSensor(Accessory):
         self.client = mqtt.Client()
         self.client.on_publish = self.on_publish
         self.client.connect(mqtt_server, 1883)
-        self.topic = f"{self.location}/{self.display_name}/{self.aid}/Lightbulb"
+        self.topic = f"{self.location}/{self.display_name}/{self.aid}/TemperatureSensor"
 
         serv_temp = self.add_preload_service('TemperatureSensor')
         self.char_temp = serv_temp.configure_char('CurrentTemperature')
