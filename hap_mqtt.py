@@ -9,34 +9,9 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-
-
 # get loaders
 service_loader = loader.get_loader()
 char_loader = loader.get_loader()
-
-
-# class MqttAccessories:
-#
-#     accessories = []
-#     topics = []
-#
-#     def __init__(self, accessory: Accessory):
-#         self.name = accessory.display_name
-#         self.aid = accessory.aid
-#
-#         self.accessory = accessory
-#         for service in accessory.services:
-#             MqttAccessories.topics.append(f"{self.name}/{self.aid}/{service.display_name}")
-#             if service.display_name != "AccessoryInformation":
-#                 self.service = service
-#
-#         self.topic = f"{self.name}/{self.aid}/{self.service}"
-#
-#         MqttAccessories.accessories.append(accessory)
-#
-#     def get_topic(self):
-#         return self.topic
 
 
 class HapMqtt(Bridge):
@@ -65,6 +40,7 @@ class HapMqtt(Bridge):
     def add_topic(self, new_topic):
         if new_topic not in self.topics:
             logger.info(f"Subscribing to: %s", new_topic)
+            print(f"Subscribing to {new_topic}")
             self.client.subscribe(new_topic)
             self.topics.append(new_topic)
 
