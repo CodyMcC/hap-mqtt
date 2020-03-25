@@ -19,6 +19,7 @@ class BasicLight(Accessory):
         self.location = location
         self.mqtt_server = mqtt_server
         self.client = mqtt.Client()
+        self.client.on_publish = self.on_publish
         self.client.connect(mqtt_server, 1883)
         self.topic = f"{self.location}/{self.display_name}/{self.aid}/Lightbulb"
 
@@ -32,9 +33,16 @@ class BasicLight(Accessory):
         self.__dict__.update(state)
 
     def set_bulb(self, value):
+        # This is called when homekit gets an action, but not during MQTT update
         logger.info(f"{self.display_name} got an action: {value} [AID: {self.aid}]")
         value = '{"On": 0}'.replace("0", str(value))
 
+        # TODO client connection needs to be refreshed or something
         self.client.publish(self.topic, value)
 
+    def on_publish(self, client, userdata, mid):
+        pass
+        # print(client)
+        # print(userdata)
+        # print(mid)
 

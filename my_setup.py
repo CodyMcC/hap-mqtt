@@ -7,10 +7,10 @@ import logging
 from os.path import expanduser
 
 from accessories.basic_light import BasicLight
-# from accessories.temperature_sensor import TemperatureSensor
+from accessories.temperature_sensor import TemperatureSensor
 from accessories.temp_sensor import TemperatureSensor
 
-MQTTSERVER = "pi-server" # "192.168.1.132"
+MQTTSERVER = "pi-server"
 accessory_state = expanduser('~/Documents/2. Code/2. Python/HAP-MQTT/accessory.state')
 
 logger = logging.getLogger(__name__)
@@ -33,9 +33,15 @@ test.add_service(service_loader.get_service("Switch"))
 
 accessories = list()
 accessories.append(BasicLight("outside", MQTTSERVER, driver, "flood_1", aid=1111))
-accessories.append(BasicLight("outside", MQTTSERVER, driver, "flood_2", aid=2222))
-accessories.append(BasicLight("outside", MQTTSERVER, driver, "flood_3", aid=3333))
-accessories.append(BasicLight("outside", MQTTSERVER, driver, "flood_4", aid=4444))
+accessories.append(BasicLight("outside", MQTTSERVER, driver, "flood_2", aid=1222))
+accessories.append(BasicLight("outside", MQTTSERVER, driver, "flood_3", aid=1333))
+accessories.append(BasicLight("outside", MQTTSERVER, driver, "flood_4", aid=1444))
+
+accessories.append(TemperatureSensor("garage", MQTTSERVER, driver, "battery_1", aid=2111))
+accessories.append(TemperatureSensor("garage", MQTTSERVER, driver, "battery_2", aid=2222))
+accessories.append(TemperatureSensor("garage", MQTTSERVER, driver, "battery_3", aid=2333))
+accessories.append(TemperatureSensor("garage", MQTTSERVER, driver, "ambient", aid=2444))
+
 accessories.append(TemperatureSensor(driver, "fake_temp"))
 
 

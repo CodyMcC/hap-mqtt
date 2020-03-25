@@ -2,6 +2,7 @@ import paho.mqtt.client as mqtt
 from pyhap.accessory import Bridge, Accessory
 import pyhap.loader as loader
 from pyhap.const import CATEGORY_OTHER
+from pyhap.accessory_driver import AccessoryDriver
 import json
 
 import logging
@@ -53,6 +54,7 @@ class HapMqtt(Bridge):
         self.subscriptions = []
         self.topics = []
 
+
     # def add_accessory(self, acc, *args, **kwargs):
     #     super().__init__(acc.display_name, acc.driver)
     #
@@ -103,8 +105,12 @@ class HapMqtt(Bridge):
             # char_obj.client_update_value(value)  # Triggers the callback function
             char_obj.set_value(value)  # Only updates the value
 
-
     def run(self):
-
+        print("\nstarting the loop\n")
         self.client.loop_forever()
+
+    @Accessory.run_at_interval(2)
+    def do(self):
+        logger.info("Topic: asdfasdfalsjkdfhlasjkdfhlaksjdhflasjhdflasjhdflajshdflkajh")
+        print("\nrunning the thing\n")
 
