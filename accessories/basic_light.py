@@ -37,7 +37,7 @@ class BasicLight(Accessory):
         # This is called when homekit gets an action, but not during MQTT update
         logger.info(f"{self.display_name} got an action: {value} [AID: {self.aid}]")
         value = '{"On": 0}'.replace("0", str(value))
-        command = f'mosquitto_pub -h {self.mqtt_server} -t {self.topic} -m vslue'.replace('value', value)
+        command = f'mosquitto_pub -h {self.mqtt_server} -t {self.topic} -m value'.replace('value', value)
         system(command)
 
         # TODO client connection needs to be refreshed or something
